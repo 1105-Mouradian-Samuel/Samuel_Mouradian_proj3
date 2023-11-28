@@ -1,7 +1,7 @@
 //Programming Project 3 - Due 11.30.2023
 //Computer Science 219 - Seciton 1001
 //Author - Samuel Mouradian
-//Version - 2.0
+//Version - 3.0
 
 
 #include <iostream>
@@ -25,23 +25,23 @@ void XOR_XORS(ifstream&, char);
 
 
 //Operations - Programming Project 3:
-void MOV(string, long int, long int, long int, long int, long int, long int, long int, long int, long int, int, int, int, int);
+long int MOV(ifstream&, char);
 
 int main(){
     ifstream txtFile;
     txtFile.open(FILENAME);
 
     char e;
-    long int r0, r1, r2, r3, r4, r5, r6, r7;
-    int N, Z, C, V;
 
     for(int i = 0; i < MAXLINE; i++){
         if(txtFile.good()){
-            long int hexVal1, hexVal2, movVar;
+            long int hexVal1, hexVal2;
+            long int reg0, reg1, reg2, reg3, reg4, reg5, reg6, reg7;
+
+            int flagN, flagZ, flagC, flagV;
+            int shift;
 
             string operand, regWrite, regRead, regPull;
-            
-            int shift;
 
             txtFile >> operand;
 
@@ -107,34 +107,10 @@ int main(){
             }
             else if(operand == "MOV" || operand == "mov"){
                 cout << operand << " ";
-                txtFile >> regWrite >> hex >> movVar;
-                cout << regWrite << " " << "0x" << hex << movVar << endl;
-                
-                if(regWrite == "R0," || regWrite == "r0,"){
+                txtFile >> regWrite >> hex >> hexVal1;
+                cout << regWrite << " " << "0x" << hex << hexVal1 << endl;
 
-                }
-                else if(regWrite == "R1," || regWrite == "r1,"){
-
-                }
-                else if(regWrite == "R2," || regWrite == "r2,"){
-
-                }
-                else if(regWrite == "R3," || regWrite == "r3,"){
-
-                }
-                else if(regWrite == "R4," || regWrite == "r4,"){
-
-                }
-                else if(regWrite == "R5," || regWrite == "r5,"){
-
-                }
-                else if(regWrite == "R6," || regWrite == "r6,"){
-
-                }
-                else if(regWrite == "R7," || regWrite == "r7,"){
-
-                }
-                MOV(regWrite, movVar, r0, r1, r2, r3, r4, r5, r6, r7, N, Z, C, V);
+                MOV(txtFile, e);
             }
         }
     }
@@ -267,43 +243,67 @@ void XOR_XORS(ifstream& hexFile, char end){
     cout << "Result:    0x" << hex << (hexVal1 ^ hexVal2) << endl << endl;
 }
 
-void MOV(string writeToReg, long int hexVal, long int reg0, long int reg1, long int reg2, long int reg3, long int reg4, long int reg5, long int reg6, long int reg7, int neg, int zero, int carry, int overflow){
+long int MOV(ifstream& hexFile, char end){
+    string operand, reg;
+    long int hexVal;
+
     long int r0, r1, r2, r3, r4, r5, r6, r7;
+
     int N, Z, C, V;
 
-    if(writeToReg == "R0," || writeToReg == "r0,"){
+
+    hexFile >> operand >> reg >> hex >> hexVal;
+
+
+    if(reg == "R0," || reg == "r0,"){
+        r0 = hexVal;
+
+        cout << "R0:0x" << r0 << "  R1:0x" << r1 << "  R2:0x" << r2 << "  R3:0x" << r3 << "  R4:0x" << r4 << "  R5:0x" << r5 << "  R6:0x" << r6 << "  R7:0x" << r7 << endl;
+        cout << "N:" << N << "  Z:" << Z << "  C:" << C << "  V:" << V << endl << endl;
+
     }
-    else if(writeToReg == "R1," || writeToReg == "r1,"){
+    else if(reg == "R1," || reg == "r1,"){
+        r1 = hexVal;
+
+        cout << "R0:0x" << r0 << "  R1:0x" << r1 << "  R2:0x" << r2 << "  R3:0x" << r3 << "  R4:0x" << r4 << "  R5:0x" << r5 << "  R6:0x" << r6 << "  R7:0x" << r7 << endl;
+        cout << "N:" << N << "  Z:" << Z << "  C:" << C << "  V:" << V << endl << endl;
     }
-    else if(writeToReg == "R2," || writeToReg == "r2,"){
+    else if(reg == "R2," || reg == "r2,"){
+        r2 = hexVal;
+
+        cout << "R0:0x" << r0 << "  R1:0x" << r1 << "  R2:0x" << r2 << "  R3:0x" << r3 << "  R4:0x" << r4 << "  R5:0x" << r5 << "  R6:0x" << r6 << "  R7:0x" << r7 << endl;
+        cout << "N:" << N << "  Z:" << Z << "  C:" << C << "  V:" << V << endl << endl;
     }
-    else if(writeToReg == "R3," || writeToReg == "r3,"){
+    else if(reg == "R3," || reg == "r3,"){
+        r3 = hexVal;
+
+        cout << "R0:0x" << r0 << "  R1:0x" << r1 << "  R2:0x" << r2 << "  R3:0x" << r3 << "  R4:0x" << r4 << "  R5:0x" << r5 << "  R6:0x" << r6 << "  R7:0x" << r7 << endl;
+        cout << "N:" << N << "  Z:" << Z << "  C:" << C << "  V:" << V << endl << endl;
     }
-    else if(writeToReg == "R4," || writeToReg == "r4,"){
+    else if(reg == "R4," || reg == "r4,"){
+        r4 = hexVal;
+
+        cout << "R0:0x" << r0 << "  R1:0x" << r1 << "  R2:0x" << r2 << "  R3:0x" << r3 << "  R4:0x" << r4 << "  R5:0x" << r5 << "  R6:0x" << r6 << "  R7:0x" << r7 << endl;
+        cout << "N:" << N << "  Z:" << Z << "  C:" << C << "  V:" << V << endl << endl;
     }
-    else if(writeToReg == "R5," || writeToReg == "r5,"){
+    else if(reg == "R5," || reg == "r5,"){
+        r5 = hexVal;
+
+        cout << "R0:0x" << r0 << "  R1:0x" << r1 << "  R2:0x" << r2 << "  R3:0x" << r3 << "  R4:0x" << r4 << "  R5:0x" << r5 << "  R6:0x" << r6 << "  R7:0x" << r7 << endl;
+        cout << "N:" << N << "  Z:" << Z << "  C:" << C << "  V:" << V << endl << endl;
     }
-    else if(writeToReg == "R6," || writeToReg == "r6,"){
+    else if(reg == "R6," || reg == "r6,"){
+        r6 = hexVal;
+
+        cout << "R0:0x" << r0 << "  R1:0x" << r1 << "  R2:0x" << r2 << "  R3:0x" << r3 << "  R4:0x" << r4 << "  R5:0x" << r5 << "  R6:0x" << r6 << "  R7:0x" << r7 << endl;
+        cout << "N:" << N << "  Z:" << Z << "  C:" << C << "  V:" << V << endl << endl;
     }
-    else if(writeToReg == "R7," || writeToReg == "r7,"){
+    else if(reg == "R7," || reg == "r7,"){
+        r7 = hexVal;
+
+        cout << "R0:0x" << r0 << "  R1:0x" << r1 << "  R2:0x" << r2 << "  R3:0x" << r3 << "  R4:0x" << r4 << "  R5:0x" << r5 << "  R6:0x" << r6 << "  R7:0x" << r7 << endl;
+        cout << "N:" << N << "  Z:" << Z << "  C:" << C << "  V:" << V << endl << endl;
     }
+
+    return r0, r1, r2, r3, r4, r5, r6, r7, N, Z, C, V;
 }
-
-/*r0 = hexVal;
-        r1 = reg1;
-        r2 = reg2;
-        r3 = reg3;
-        r4 = reg4;
-        r5 = reg5;
-        r6 = reg6;
-        r7 = reg7;
-
-        N = neg;
-        Z = zero;
-        C = carry;
-        V = overflow;
-
-        cout << "R0: 0x" << hex << r0 << "  R1: 0x" << hex << r1 << "  R2: 0x" << hex << r2 << "  R3: 0x" << hex << r3 << "  R4: 0x" << hex << r4 << "  R5: 0x";
-        cout << hex << r5 << "  R6: 0x" << hex << r6 << "  R7: 0x" << hex << r7 << endl;
-
-        cout << "N = " << N << "  Z = " << Z << "  C = " << C << "  V = " << V << endl << endl;*/
